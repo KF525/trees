@@ -2,29 +2,22 @@
 class KthElement {
 
   def kthSmallestElement(tree: TreeC[Int], kElement: Int): TreeC[Int] =
-    (kElement,tree) match {
-      case (1, NodeC(_, EmptyC, _, _)) => tree
-      case (1, NodeC(_, l, _, _)) => kthSmallestElement(l, kElement)
-      case (_,_) => kthSmallestElementH(tree, kElement)
-    }
-
-  def kthSmallestElementH(tree: TreeC[Int], kElement: Int): TreeC[Int] = (kElement, tree) match {
-    case (n, NodeC(_, l, _, _)) if checkCurrentNode(n, l) => tree
-    case (1, NodeC(_, EmptyC, _, _)) => tree
-    case (1, NodeC(_, l, _, _)) => l
-    case (n, NodeC(_, l, _, c)) if findNextSubtree(l, n, lessThan(n)) => kthSmallestElementH(l, n)
-    case (n, NodeC(_, l, r, c)) if findNextSubtree(l, n, greaterThan(n)) =>
-      val countedNodes = nodesToRemoveFromK(l)
-      kthSmallestElementH(r, n - countedNodes)
-    case (_, _) => EmptyC
+    tree match {
+      case NodeC(_, l, _, _) if onNode(kElement, l) => tree
+      case NodeC(_, l, _, c) if findNextSubtree(l, kElement, lessThan(kElement)) => kthSmallestElement(l, kElement)
+      case NodeC(_, l, r, c) if findNextSubtree(l, kElement, greaterThan(kElement)) =>
+        val countedNodes = nodesToRemoveFromK(l)
+        kthSmallestElement(r, kElement - countedNodes)
+      case _ => EmptyC
   }
 
   def greaterThan(a: Int) = (b: Int) => a > b
 
   def lessThan(a: Int) = (b: Int) => a <= b
 
-  def checkCurrentNode(k: Int, l: TreeC[Int]): Boolean = l match {
+  def onNode(k: Int, l: TreeC[Int]): Boolean = l match {
     case NodeC(_,_,_,c) if c + 1 == k => true
+    case EmptyC if 0 + 1 == k => true
     case _ => false
   }
 

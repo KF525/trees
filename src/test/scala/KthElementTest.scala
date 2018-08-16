@@ -6,7 +6,7 @@ class KthElementTest  extends FlatSpec with Matchers {
   val kthElement = new KthElement
 
   "kthSmallestElement" should "return the root immediately if left children is one less than k" in {
-    val node = kthElement.kthSmallestElementH(tree, 3)
+    val node = kthElement.kthSmallestElement(tree, 3)
     node.asInstanceOf[NodeC[Int]].data shouldBe 6
   }
 
@@ -16,27 +16,27 @@ class KthElementTest  extends FlatSpec with Matchers {
   }
 
   it should "correctly handle nodes in the left subtree and return 4" in {
-    val node = kthElement.kthSmallestElementH(tree, 2)
+    val node = kthElement.kthSmallestElement(tree, 2)
     node.asInstanceOf[NodeC[Int]].data shouldBe 4
   }
 
   it should "correctly handle nodes in the right subtree and return 8" in {
-    val node = kthElement.kthSmallestElementH(tree, 4)
+    val node = kthElement.kthSmallestElement(tree, 4)
     node.asInstanceOf[NodeC[Int]].data shouldBe 8
   }
 
   it should "correctly handle nodes in the right subtree and return 10" in {
-    val node = kthElement.kthSmallestElementH(tree, 5)
+    val node = kthElement.kthSmallestElement(tree, 5)
     node.asInstanceOf[NodeC[Int]].data shouldBe 10
   }
 
   it should "correctly handle nodes in the right subtree and return 15" in {
-    val node = kthElement.kthSmallestElementH(tree, 6)
+    val node = kthElement.kthSmallestElement(tree, 6)
     node.asInstanceOf[NodeC[Int]].data shouldBe 15
   }
 
   it should "handle an empty tree or invalid kth element" in {
-    kthElement.kthSmallestElementH(tree, 8) shouldBe EmptyC
-    kthElement.kthSmallestElementH(EmptyC, 1) shouldBe EmptyC
+    kthElement.kthSmallestElement(tree, 8) shouldBe EmptyC
+    kthElement.kthSmallestElement(EmptyC, 1) shouldBe EmptyC
   }
 }
