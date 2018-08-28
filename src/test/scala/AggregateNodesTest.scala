@@ -24,4 +24,8 @@ class AggregateNodesTest extends FlatSpec with Matchers {
   it should "return the total of even nodes" in {
     aggregateNodes.sumNodesWithCondition(tree, aggregateNodes.sumEvenNodes) shouldBe 44
   }
+
+  "tailRecSumNodes" should "return total of node data values" in {
+    aggregateNodes.tailRecSumNodes(tree) shouldBe 71
+  }
 }

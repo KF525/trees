@@ -5,7 +5,7 @@ class LevelCountTest extends FlatSpec with Matchers{
   val tree = Node(10, Node(5, Node(2, Empty, Empty), Node(7, Empty, Empty)), Node(15, Node(12, Empty, Empty), Node(20, Node(18, Empty, Empty), Empty)))
   val levelCount = new LevelCount
 
-  "countNodes" should "return the number of nodes on agiven level" in {
+  "countNodes" should "return the number of nodes on a given level" in {
     levelCount.countNodes(2, tree) shouldBe 4
     levelCount.countNodes(3, tree) shouldBe 1
   }

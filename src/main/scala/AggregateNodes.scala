@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 
 class AggregateNodes {
   def sumNodes(node: Tree[Int]): Int = node match {
@@ -34,5 +35,15 @@ class AggregateNodes {
   private def averageHelper(node: Tree[Int]): Average = node match {
     case Empty => Average(0, 0)
     case Node(d, l, r) => Average(d, 1).combine(averageHelper(l)).combine(averageHelper(r))
+  }
+
+  def tailRecSumNodes(node: Tree[Int]) = {
+    @tailrec
+    def helper(tree: List[Tree[Int]], acc: Int): Int = tree match {
+      case Nil => acc
+      case Node(d, l, r)::xs => helper(l::r::xs, acc + d)
+      case Empty::xs => helper(xs, acc)
+    }
+    helper(List(node), 0)
   }
 }
