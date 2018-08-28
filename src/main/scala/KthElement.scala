@@ -2,6 +2,7 @@
 class KthElement {
 
   def kthSmallestElement(tree: TreeC[Int], kElement: Int): TreeC[Int] =
+    //if k < 0 or k > tree.size then we know it's invalid
     tree match {
       case NodeC(_, l, _, _) if onNode(kElement, l) => tree
       case NodeC(_, l, _, c) if findNextSubtree(l, kElement, lessThan(kElement)) => kthSmallestElement(l, kElement)
@@ -17,7 +18,7 @@ class KthElement {
 
   def onNode(k: Int, l: TreeC[Int]): Boolean = l match {
     case NodeC(_,_,_,c) if c + 1 == k => true
-    case EmptyC if 0 + 1 == k => true
+    case EmptyC if 1 == k => true
     case _ => false
   }
 
@@ -34,4 +35,4 @@ class KthElement {
   }
 }
 
-// If runtime not an issue, in order traversal into an array and select k-1 element from array
+// If runtime not an issue or tree is very small, in order traversal into an array and select k-1 element from array

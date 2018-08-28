@@ -37,6 +37,7 @@ class KthElementTest  extends FlatSpec with Matchers {
 
   it should "handle an empty tree or invalid kth element" in {
     kthElement.kthSmallestElement(tree, 8) shouldBe EmptyC
+    kthElement.kthSmallestElement(tree, 0) shouldBe EmptyC
     kthElement.kthSmallestElement(EmptyC, 1) shouldBe EmptyC
   }
 }
