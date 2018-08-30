@@ -14,4 +14,8 @@ class PathSumTest extends FlatSpec with Matchers{
     pathSum.hasPathSum(125, tree) shouldBe false
     pathSum.hasPathSum(19, tree) shouldBe false
   }
+
+  it should "handle negative data values" in {
+
+  }
 }
