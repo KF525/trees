@@ -7,5 +7,4 @@ class UpdateTree {
         if (d > data) Node(d, addNode(data, l), r)
         else Node(d, l, addNode(data, r))
     }
-
 }
